@@ -644,6 +644,10 @@ fi
 %attr(0644,root,root) %{_unitdir}/%{?scl_prefix}%{pkg_name}-jsvc.service
 
 %changelog
+* Tue Oct 17 2017 Filirom1-bot <Filirom1@gmail.com> 7.0.82-2
+- feat: add release and test scripts (filirom1@gmail.com)
+- feat: use embedded apache-commons-collections (Filirom1@gmail.com)
+
 * Mon Oct 09 2017 Romain Philibert <Filirom1@gmail.com> 7.0.82-1
 - new package built with tito
 
