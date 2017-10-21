@@ -1,7 +1,7 @@
 FROM centos
 
 RUN yum install -y epel-release \
- && yum install -y tito \
+ && yum install -y tito copr-cli scl-utils-build \
  && yum clean all
 
 RUN git config --global user.name "Filirom1-bot" \
