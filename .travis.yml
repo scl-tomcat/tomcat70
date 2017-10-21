@@ -3,7 +3,19 @@ sudo: required
 services:
   - docker
 
-script:
-  - if [ $TRAVIS_EVENT_TYPE == "pull_request" ]; then .test/test.sh; fi
-  - if [ $TRAVIS_EVENT_TYPE == "cron" ]; then .release/create-pr-on-new-version.sh; fi
-  - if [ $TRAVIS_EVENT_TYPE == "push" ] && [ $TRAVIS_BRANCH == "master" ]; then .release/tag-if-new-version.sh; fi
+stages:
+  - name: test
+    if: type != cron
+  - name: create_pr_on_new_version
+    if: type = cron
+  - name: tag_if_new_version
+    if: type = push AND branch = master
+
+jobs:
+  include:
+    - stage: test
+      script: .test/test.sh
+    - stage: create_pr_on_new_version
+      script: .release/create-pr-on-new-version.sh
+    - stage: tag_if_new_version
+      script: .release/tag-if-new-version.sh
